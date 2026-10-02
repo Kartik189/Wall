@@ -1,0 +1,830 @@
+[
+  {
+    "url": "https://www.townscript.com/",
+    "bytes": 36956,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "no data in HTML"
+  },
+  {
+    "url": "https://in.bookmyshow.com/",
+    "bytes": 142396,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [
+      "__INITIAL_STATE__",
+      "script[type=json]",
+      "svgManifest"
+    ],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "js present, no events"
+  },
+  {
+    "url": "https://bookmyrace.in/",
+    "bytes": 107746,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [],
+    "js": 0,
+    "js_titles": [],
+    "css": 7,
+    "css_titles": [
+      "RUNGREEN",
+      "Train with Kishlay",
+      "BeAthlit",
+      "Astitva Foundation"
+    ],
+    "verdict": "html (CSS only)"
+  },
+  {
+    "url": "https://www.racesindia.com/",
+    "bytes": 3120600,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [
+      "__next_f"
+    ],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "js present, no events"
+  },
+  {
+    "url": "https://in.mapometer.com/events",
+    "bytes": 17658,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "no data in HTML"
+  },
+  {
+    "url": "https://www.runindia.in/",
+    "bytes": 186585,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [
+      "script[type=json]"
+    ],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "js present, no events"
+  },
+  {
+    "url": "https://sportifiindia.com/",
+    "bytes": 2956,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "no data in HTML"
+  },
+  {
+    "url": "https://www.strive-endurance.com/",
+    "bytes": 16523,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "no data in HTML"
+  },
+  {
+    "url": "https://www.townscript.com/in/india/paid--marathons",
+    "bytes": 93205,
+    "jsonld": 10,
+    "jsonld_titles": [
+      "Sekhon Indian Air Force Marathon 2026 Guwahati",
+      "Federal Bank Gunners Soldierathon Hyderabad 2nd Edition, 27th September, Sunday, 2026",
+      "Pink Run 5K - Get Trophy & Medal with Your Name",
+      "Neon Run 21 KM - Get Beautiful Medal by Courier"
+    ],
+    "payload_labels": [],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "html (JSON-LD)"
+  },
+  {
+    "url": "https://in.mapometer.com/events/running",
+    "bytes": 17310,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "no data in HTML"
+  },
+  {
+    "url": "https://in.mapometer.com/events/cycling",
+    "bytes": 14182,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "no data in HTML"
+  },
+  {
+    "url": "https://in.mapometer.com/events/triathlon",
+    "bytes": 14240,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "no data in HTML"
+  },
+  {
+    "url": "https://in.mapometer.com/events/swimming",
+    "bytes": 14173,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "no data in HTML"
+  },
+  {
+    "url": "https://www.procam.in/",
+    "bytes": 199335,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [
+      "script[type=json]"
+    ],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "js present, no events"
+  },
+  {
+    "url": "https://www.procamslam.com/",
+    "bytes": 26681,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [],
+    "js": 0,
+    "js_titles": [],
+    "css": 4,
+    "css_titles": [
+      "Vedanta Delhi Half Marathon",
+      "Tata Steel World 25K Kolkata",
+      "Tata Mumbai Marathon",
+      "TCS World 10K Bengaluru"
+    ],
+    "verdict": "html (CSS only)"
+  },
+  {
+    "url": "https://www.tatamumbaimarathon.procam.in/",
+    "verdict": "unreachable",
+    "detail": "ConnectionError"
+  },
+  {
+    "url": "https://www.tmm.co.in/",
+    "verdict": "unreachable",
+    "detail": "SSLError"
+  },
+  {
+    "url": "https://www.delhimarathon.com/",
+    "bytes": 18635,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "no data in HTML"
+  },
+  {
+    "url": "https://www.tcsworld10k.procam.in/",
+    "verdict": "unreachable",
+    "detail": "ConnectionError"
+  },
+  {
+    "url": "https://www.tatasteelkolkata25k.procam.in/",
+    "verdict": "unreachable",
+    "detail": "ConnectionError"
+  },
+  {
+    "url": "https://www.wipro.com/bengaluru-marathon/",
+    "verdict": "unreachable",
+    "detail": "HTTP 404"
+  },
+  {
+    "url": "https://www.bengalurumarathon.com/",
+    "verdict": "unreachable",
+    "detail": "ConnectionError"
+  },
+  {
+    "url": "https://www.nmdchyderabadmarathon.com/",
+    "bytes": 6613,
+    "jsonld": 1,
+    "jsonld_titles": [
+      "NMDC Hyderabad Marathon 2026"
+    ],
+    "payload_labels": [],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "html (JSON-LD)"
+  },
+  {
+    "url": "https://www.chennaimarathon.com/",
+    "verdict": "unreachable",
+    "detail": "SSLError"
+  },
+  {
+    "url": "https://www.punemarathon.org/",
+    "verdict": "unreachable",
+    "detail": "ConnectionError"
+  },
+  {
+    "url": "https://www.adani-ahmedabad-marathon.com/",
+    "verdict": "unreachable",
+    "detail": "ConnectionError"
+  },
+  {
+    "url": "https://www.goarivermarathon.com/",
+    "bytes": 2665,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "no data in HTML"
+  },
+  {
+    "url": "https://www.ladakhmarathon.com/",
+    "verdict": "unreachable",
+    "detail": "SSLError"
+  },
+  {
+    "url": "https://www.tawangmarathon.com/",
+    "bytes": 265131,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [
+      "astra",
+      "astraAddon",
+      "script[type=json]",
+      "sp_wpcp_vars",
+      "starter_templates_zip_preview"
+    ],
+    "js": 0,
+    "js_titles": [],
+    "css": 1,
+    "css_titles": [
+      "Run Above the Clouds, Leave behind a Legacy !"
+    ],
+    "verdict": "html (CSS only)"
+  },
+  {
+    "url": "https://www.sarmangmarathon.com/",
+    "verdict": "unreachable",
+    "detail": "ConnectionError"
+  },
+  {
+    "url": "https://www.racesindia.com/distance/ultramarathon",
+    "bytes": 642486,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [
+      "__next_f"
+    ],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "js present, no events"
+  },
+  {
+    "url": "https://www.racesindia.com/sport/trail-running",
+    "bytes": 652683,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [
+      "__next_f"
+    ],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "js present, no events"
+  },
+  {
+    "url": "https://www.racesindia.com/sport/running",
+    "verdict": "unreachable",
+    "detail": "HTTP 404"
+  },
+  {
+    "url": "https://www.racesindia.com/sport/hybrid",
+    "bytes": 582031,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [
+      "__next_f"
+    ],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "js present, no events"
+  },
+  {
+    "url": "https://malnadultra.com/",
+    "bytes": 204032,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [
+      "diviBreakpointData",
+      "diviElementLinkData",
+      "et_builder_utils_params",
+      "et_pb_custom"
+    ],
+    "js": 0,
+    "js_titles": [],
+    "css": 1,
+    "css_titles": [
+      "four Races."
+    ],
+    "verdict": "html (CSS only)"
+  },
+  {
+    "url": "https://www.himalayan100.com/",
+    "verdict": "unreachable",
+    "detail": "ConnectionError"
+  },
+  {
+    "url": "https://www.spitivalleymarathon.com/",
+    "verdict": "unreachable",
+    "detail": "ConnectionError"
+  },
+  {
+    "url": "https://www.kaveritrailmarathon.com/",
+    "bytes": 45218,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "no data in HTML"
+  },
+  {
+    "url": "https://www.tourdesatara.com/",
+    "verdict": "unreachable",
+    "detail": "ConnectionError"
+  },
+  {
+    "url": "https://www.solangskyultra.com/",
+    "verdict": "unreachable",
+    "detail": "ConnectionError"
+  },
+  {
+    "url": "https://www.matheranendurathon.com/",
+    "verdict": "unreachable",
+    "detail": "ConnectionError"
+  },
+  {
+    "url": "https://www.nainitaltrailultra.com/",
+    "verdict": "unreachable",
+    "detail": "ConnectionError"
+  },
+  {
+    "url": "https://www.jawadhuhillsultra.com/",
+    "verdict": "unreachable",
+    "detail": "ConnectionError"
+  },
+  {
+    "url": "https://www.vagamonultrail.com/",
+    "verdict": "unreachable",
+    "detail": "ConnectionError"
+  },
+  {
+    "url": "https://www.tourdenilgiris.com/",
+    "verdict": "unreachable",
+    "detail": "ConnectionError"
+  },
+  {
+    "url": "https://www.letapemysuru.com/",
+    "verdict": "unreachable",
+    "detail": "ConnectionError"
+  },
+  {
+    "url": "https://www.tourdehimalaya.com/",
+    "verdict": "unreachable",
+    "detail": "ConnectionError"
+  },
+  {
+    "url": "https://www.tourdeodisha.com/",
+    "verdict": "unreachable",
+    "detail": "ConnectionError"
+  },
+  {
+    "url": "https://www.tourdekolkata.com/",
+    "bytes": 616793,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [
+      "r",
+      "script[type=json]"
+    ],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "js present, no events"
+  },
+  {
+    "url": "https://www.tourdekonkan.com/",
+    "verdict": "unreachable",
+    "detail": "ConnectionError"
+  },
+  {
+    "url": "https://www.tourdeuttrakhand.com/",
+    "verdict": "unreachable",
+    "detail": "ConnectionError"
+  },
+  {
+    "url": "https://www.bengalurubycycle.com/",
+    "verdict": "unreachable",
+    "detail": "ConnectionError"
+  },
+  {
+    "url": "https://www.cyclingindia.in/",
+    "verdict": "unreachable",
+    "detail": "ConnectionError"
+  },
+  {
+    "url": "https://www.brmindia.in/",
+    "bytes": 254858,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [
+      "et_animation_data",
+      "et_builder_utils_params",
+      "et_pb_custom",
+      "mejsL10n"
+    ],
+    "js": 0,
+    "js_titles": [],
+    "css": 1,
+    "css_titles": [
+      "ABOUT US"
+    ],
+    "verdict": "html (CSS only)"
+  },
+  {
+    "url": "https://www.audaxindia.in/",
+    "bytes": 28666,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [],
+    "js": 0,
+    "js_titles": [],
+    "css": 25,
+    "css_titles": [
+      "300 BRM",
+      "400 BRM",
+      "100 BRM",
+      "200 BRM"
+    ],
+    "verdict": "html (CSS only)"
+  },
+  {
+    "url": "https://www.randonneurs.in/",
+    "verdict": "unreachable",
+    "detail": "ConnectionError"
+  },
+  {
+    "url": "https://www.triathlonindia.com/",
+    "bytes": 97052,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [
+      "__next_f"
+    ],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "js present, no events"
+  },
+  {
+    "url": "https://www.triathlonindia.com/events/event-calendar",
+    "bytes": 55305,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [
+      "__next_f"
+    ],
+    "js": 0,
+    "js_titles": [],
+    "css": 3,
+    "css_titles": [
+      "Sub Jnr / Jnr Triathlon National Championship",
+      "U23/Snr Triathlon National Championship",
+      "Age Group Triathlon"
+    ],
+    "verdict": "html (CSS only)"
+  },
+  {
+    "url": "https://www.triathlonindia.com/conduct-event/",
+    "verdict": "unreachable",
+    "detail": "HTTP 404"
+  },
+  {
+    "url": "https://www.triathlonindia.com/itf/multi-sport",
+    "bytes": 69709,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [
+      "__next_f"
+    ],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "js present, no events"
+  },
+  {
+    "url": "https://www.racesindia.com/sport/triathlon",
+    "bytes": 486267,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [
+      "__next_f"
+    ],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "js present, no events"
+  },
+  {
+    "url": "https://www.ironman.com/",
+    "verdict": "unreachable",
+    "detail": "HTTP 403"
+  },
+  {
+    "url": "https://www.ironman.com/races/im703-goa",
+    "verdict": "unreachable",
+    "detail": "HTTP 403"
+  },
+  {
+    "url": "https://www.ironman.com/races/im-goa",
+    "verdict": "unreachable",
+    "detail": "HTTP 403"
+  },
+  {
+    "url": "https://www.5150.com/",
+    "verdict": "unreachable",
+    "detail": "ConnectTimeout"
+  },
+  {
+    "url": "https://www.5150.com/races/",
+    "verdict": "unreachable",
+    "detail": "ConnectTimeout"
+  },
+  {
+    "url": "https://tatamumbaimarathon.procam.in/",
+    "bytes": 445930,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [
+      "script[type=json]"
+    ],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "js present, no events"
+  },
+  {
+    "url": "https://tcsworld10k.procam.in/",
+    "bytes": 135100,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [
+      "script[type=json]"
+    ],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "js present, no events"
+  },
+  {
+    "url": "https://tatasteelkolkata25k.procam.in/",
+    "bytes": 195635,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [
+      "script[type=json]"
+    ],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "js present, no events"
+  },
+  {
+    "url": "https://www.townscript.com/in/india/paid--running",
+    "bytes": 93129,
+    "jsonld": 10,
+    "jsonld_titles": [
+      "Sekhon Indian Air Force Marathon 2026 Guwahati",
+      "Federal Bank Gunners Soldierathon Hyderabad 2nd Edition, 27th September, Sunday, 2026",
+      "Pink Run 5K - Get Trophy & Medal with Your Name",
+      "Neon Run 21 KM - Get Beautiful Medal by Courier"
+    ],
+    "payload_labels": [],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "html (JSON-LD)"
+  },
+  {
+    "url": "https://www.townscript.com/in/india/sports",
+    "verdict": "unreachable",
+    "detail": "HTTP 404"
+  },
+  {
+    "url": "https://www.townscript.com/in/bangalore/sports",
+    "verdict": "unreachable",
+    "detail": "HTTP 404"
+  },
+  {
+    "url": "https://www.townscript.com/in/india/paid--marathons?page=2",
+    "bytes": 136289,
+    "jsonld": 21,
+    "jsonld_titles": [
+      "Sekhon Indian Air Force Marathon 2026 Guwahati",
+      "Federal Bank Gunners Soldierathon Hyderabad 2nd Edition, 27th September, Sunday, 2026",
+      "Pink Run 5K - Get Trophy & Medal with Your Name",
+      "Neon Run 21 KM - Get Beautiful Medal by Courier"
+    ],
+    "payload_labels": [],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "html (JSON-LD)"
+  },
+  {
+    "url": "https://www.townscript.com/in/india/paid--cycling",
+    "bytes": 94428,
+    "jsonld": 12,
+    "jsonld_titles": [
+      "Pink Run 5K - Get Trophy & Medal with Your Name",
+      "Hercules Virtual Marathon - Get Medal by Courier",
+      "Hercules Virtual Marathon - Get Medal by Courier",
+      "Hercules Virtual Marathon - Get Medal by Courier"
+    ],
+    "payload_labels": [],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "html (JSON-LD)"
+  },
+  {
+    "url": "https://www.townscript.com/in/india/paid--triathlon",
+    "bytes": 80970,
+    "jsonld": 6,
+    "jsonld_titles": [
+      "CAPITAL SMALL FINANCE BANK ONE RACE JALANDHAR HALF MARATHON 2026",
+      "PCMC Runners Annual Registration- 2026 MY CHOICE 10K and 5K event",
+      "Jaipur Ultra Marathon",
+      "Hillman 51.5 Assam Triathlon 2026"
+    ],
+    "payload_labels": [],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "html (JSON-LD)"
+  },
+  {
+    "url": "https://www.racesindia.com/events",
+    "verdict": "unreachable",
+    "detail": "HTTP 404"
+  },
+  {
+    "url": "https://www.racesindia.com/races",
+    "bytes": 499538,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [
+      "__next_f"
+    ],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "js present, no events"
+  },
+  {
+    "url": "https://bookmyrace.in/events",
+    "bytes": 67532,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "no data in HTML"
+  },
+  {
+    "url": "https://bookmyrace.in/all-events",
+    "verdict": "unreachable",
+    "detail": "HTTP 404"
+  },
+  {
+    "url": "https://in.mapometer.com/events/",
+    "bytes": 17658,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "no data in HTML"
+  },
+  {
+    "url": "https://www.runindia.in/events",
+    "bytes": 256701,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [
+      "script[type=json]"
+    ],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "js present, no events"
+  },
+  {
+    "url": "https://sportifiindia.com/events",
+    "bytes": 2956,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "no data in HTML"
+  },
+  {
+    "url": "https://www.strive-endurance.com/events",
+    "bytes": 12124,
+    "jsonld": 0,
+    "jsonld_titles": [],
+    "payload_labels": [],
+    "js": 0,
+    "js_titles": [],
+    "css": 0,
+    "css_titles": [],
+    "verdict": "no data in HTML"
+  }
+]

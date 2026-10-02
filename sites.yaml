@@ -1,0 +1,152 @@
+# Phase 1 seed sites: endurance sports listings that expose structured data
+# without running a browser. Anything that genuinely needs one is marked
+# requires_js and reported as blocked rather than silently returning zero.
+#
+# Every HTML page is read through the same three-step chain, stopping at the
+# first step that yields events:
+#   1. schema.org JSON-LD   <script type="application/ld+json">
+#   2. embedded JS state    __NEXT_DATA__, __NUXT__, __INITIAL_STATE__,
+#                           __next_f flight data, var x = {...}, JSON.parse("...")
+#   3. CSS selectors        the `selectors:` block below
+#
+# Per-site options beyond key/name/type/enabled/seeds:
+#   delay_seconds   minimum spacing between requests to this host
+#   selectors       CSS fallback (container/title/url/date/venue)
+#   use_js          set false to skip step 2 for a site whose inline JSON is
+#                   noisy enough to produce junk records (default: true)
+#   url_template    how to turn a slug found in inline JSON into a real link,
+#                   e.g. "https://example.com/events/{slug}"; records without a
+#                   resolvable link are dropped
+#   requires_js     documents that the listing is built client-side. The page is
+#                   still fetched and run through the chain above - if the data
+#                   turns out to be in an inline script the site is reported as
+#                   ok, otherwise as blocked.
+#   note            shown in the run report when a site is blocked
+
+defaults:
+  delay_seconds: 2.0       # minimum spacing between requests to one host
+  timeout: 25
+  retries: 2
+  respect_robots: true
+  sports_only: true        # drop records that classify as sport "other"
+  drop_past: true          # drop events that have already finished; listing
+                           # sites keep showing last year's edition when the
+                           # next one has no date yet
+
+sites:
+  - key: runsignup
+    name: RunSignup
+    type: api
+    enabled: true
+    # Public REST API, no key required. Each event_type is queried separately
+    # because the endpoint filters on one at a time.
+    event_types:
+      - running_race
+      - trail_race
+      - triathlon
+      - duathlon
+      - bike_race
+      - swim
+      - adventure_race
+    results_per_page: 100
+    max_pages_per_type: 3
+    days_ahead: 90
+    delay_seconds: 1.5
+
+  - key: indiarunning
+    name: IndiaRunning
+    type: nextdata
+    enabled: true
+    # Listing pages seed the run; sitemap.xml then supplies detail pages, which
+    # carry coordinates and per-category pricing the listing omits.
+    seeds:
+      - https://www.indiarunning.com/
+    max_detail_pages: 60
+    delay_seconds: 2.0
+
+  - key: allevents
+    name: AllEvents.in
+    type: jsonld
+    enabled: true
+    # schema.org Event markup on every city sports page.
+    seeds:
+      - https://allevents.in/bengaluru/sports
+      - https://allevents.in/mumbai/sports
+      - https://allevents.in/new%20delhi/sports
+      - https://allevents.in/kolkata/sports
+      - https://allevents.in/hyderabad/sports
+      - https://allevents.in/chennai/sports
+      - https://allevents.in/ahmedabad/sports
+      - https://allevents.in/jaipur/sports
+    delay_seconds: 10.0    # robots.txt asks for 10s
+    selectors:
+      container: ".event-card"
+      title: ".title"
+      url: "a"
+      date: ".date"
+      venue: ".subtitle"
+
+  - key: townscript
+    name: Townscript
+    type: jsonld
+    enabled: true
+    # Angular SPA, but a prerender service serves fully-rendered HTML with
+    # schema.org Event markup to crawler user agents - which ours is. A browser
+    # UA gets a 5 KB empty shell instead, so do not "fix" the UA here.
+    # Listing pages are cumulative: ?page=4 returns pages 1-4 in one request.
+    seeds:
+      - https://www.townscript.com/in/india/paid--marathons?page=4
+      - https://www.townscript.com/in/india/paid--running?page=4
+      - https://www.townscript.com/in/india/paid--cycling?page=4
+      - https://www.townscript.com/in/india/paid--triathlon?page=4
+      - https://www.townscript.com/in/india/paid--swimming?page=4
+      - https://www.townscript.com/in/india/paid--sports?page=4
+      - https://www.townscript.com/in/india/paid--adventure?page=4
+    delay_seconds: 2.0
+    # The markup gives addressLocality but never a country, and every seed here
+    # is an /in/india/ page.
+    default_country: India
+
+  - key: racesindia
+    name: RacesIndia
+    type: jsonld
+    enabled: true
+    # The only JSON-LD is CollectionPage/Organization boilerplate, so the chain
+    # falls through to the Next.js flight data, where `initialRaces` carries the
+    # real records - name, dates, city/state/country, distances, organiser.
+    # Races expose a slug rather than a URL, hence url_template.
+    url_template: "https://www.racesindia.com/races/{slug}"
+    seeds:
+      - https://www.racesindia.com/races
+      - https://www.racesindia.com/sport/trail-running
+      - https://www.racesindia.com/sport/triathlon
+      - https://www.racesindia.com/sport/hybrid
+      - https://www.racesindia.com/sport/cycling
+      - https://www.racesindia.com/sport/duathlon
+      - https://www.racesindia.com/distance/ultramarathon
+      - https://www.racesindia.com/distance/marathon
+      - https://www.racesindia.com/distance/half-marathon
+    delay_seconds: 2.0
+
+  - key: hyrox
+    name: HYROX
+    type: api
+    enabled: true
+    # WordPress REST API lists every race city, but the date lives in a
+    # client-rendered widget - records are emitted with date_status
+    # "unavailable_phase1" instead of a guessed date.
+    per_page: 100
+    max_pages: 5
+    delay_seconds: 2.0
+
+  - key: ironman
+    name: IRONMAN
+    type: jsonld
+    enabled: true
+    requires_js: true
+    note: "race list loads via Drupal views_ajax; needs a browser (phase 2)"
+    # Probed anyway on every run: if Drupal ever inlines the list as JSON the
+    # chain will find it and this site flips to ok without a config change.
+    seeds:
+      - https://www.ironman.com/races
+    delay_seconds: 3.0

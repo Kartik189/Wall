@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EventCrawler &middot; {{ summary.total }} events</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header>
+  <div class="bar">
+    <h1>EventCrawler <span class="muted">phase 1</span></h1>
+    <div class="actions">
+      <a class="btn primary" href="/download">Download JSON</a>
+      <a class="btn" href="/events.json" target="_blank">View raw</a>
+      <a class="btn" href="/download/report">Run report</a>
+      <button class="btn" id="recrawl">Re-crawl</button>
+    </div>
+  </div>
+  <p class="muted">
+    {{ summary.total }} events from {{ summary.sources|length }} sources
+    {%- if report.finished_at %} &middot; last run {{ report.finished_at[:19].replace('T', ' ') }} UTC{% endif %}
+    {%- if report.duplicates_dropped %} &middot; {{ report.duplicates_dropped }} duplicates dropped{% endif %}
+  </p>
+</header>
+
+{% if blocked %}
+<div class="banner">
+  <strong>Not crawled:</strong>
+  {% for site in blocked %}{{ site.name }} ({{ site.reason }}){% if not loop.last %}; {% endif %}{% endfor %}.
+  These render their listings in the browser, so phase 1 cannot read them.
+</div>
+{% endif %}
+
+{% if not has_output %}
+<div class="banner">No events yet. Run <code>python run.py crawl</code>, then reload.</div>
+{% endif %}
+
+<section class="filters">
+  <input type="search" id="search" placeholder="Search title, city, state, venue&hellip;" autocomplete="off">
+  <div class="chips" id="sport-chips">
+    <button class="chip active" data-sport="">All <span>{{ summary.total }}</span></button>
+    {% for sport, count in summary.sports %}
+    <button class="chip" data-sport="{{ sport }}">{{ sport.replace('_', ' ') }} <span>{{ count }}</span></button>
+    {% endfor %}
+  </div>
+  <div class="chips" id="source-chips">
+    <button class="chip active" data-source="">All sources</button>
+    {% for source, count in summary.sources %}
+    <button class="chip" data-source="{{ source }}">{{ source }} <span>{{ count }}</span></button>
+    {% endfor %}
+  </div>
+  <label class="toggle"><input type="checkbox" id="dated-only"> Only events with a date
+    <span class="muted">({{ summary.dateless }} undated)</span></label>
+  <p class="muted" id="count"></p>
+</section>
+
+<table id="events">
+  <thead>
+    <tr><th>Date</th><th>Event</th><th>Sport</th><th>Distances</th><th>Location</th><th>Price</th><th>Link</th></tr>
+  </thead>
+  <tbody>
+  {% for e in events %}
+    <tr data-sport="{{ e.sport }}" data-source="{{ e.source }}" data-dated="{{ 1 if e.start else 0 }}"
+        data-text="{{ (e.title ~ ' ' ~ (e.city or '') ~ ' ' ~ (e.region or '') ~ ' ' ~ (e.venue_name or '') ~ ' ' ~ (e.country or '') ~ ' ' ~ (e.distances | join(' '))) | lower }}">
+      <td class="date">
+        {% if e.start %}{{ e.start[:10] }}{% else %}<span class="pill warn">date TBC</span>{% endif %}
+      </td>
+      <td>
+        <a href="{{ e.source_url }}" target="_blank" rel="noopener">{{ e.title }}</a>
+        <div class="muted small">{{ e.source }}</div>
+      </td>
+      <td><span class="pill sport-{{ e.sport }}">{{ e.sport.replace('_', ' ') }}</span></td>
+      <td class="small">{{ e.distances | join(', ') }}</td>
+      <td class="small">{{ [e.venue_name, e.city, e.region, e.country] | select | join(', ') }}</td>
+      <td class="small">
+        {% if e.price_min is not none %}
+          {{ e.currency or '' }} {{ e.price_min }}{% if e.price_max and e.price_max != e.price_min %}&ndash;{{ e.price_max }}{% endif %}
+        {% endif %}
+      </td>
+      <td class="small">{% if e.ticket_url %}<a href="{{ e.ticket_url }}" target="_blank" rel="noopener">register</a>{% endif %}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+<p class="muted empty" id="empty" hidden>Nothing matches those filters.</p>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
