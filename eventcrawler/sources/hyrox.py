@@ -20,11 +20,17 @@ API = "https://hyrox.com/wp-json/wp/v2/event"
 
 _HYROX_RE = re.compile(r"hyrox", re.I)
 
+#: Race formats that sit between the brand and the city in a title:
+#: "HYROX Youngstars Paris", "PUMA HYROX World Championships Hong Kong".
+_EDITION_RE = re.compile(r"^(?:youngstars|world championships?|championships?|elite 15)\s+", re.I)
+
 
 def _city_from_title(title: Optional[str]) -> Optional[str]:
-    """'HYROX Dubai' -> Dubai; 'Virgin Active HYROX Cape Town ||' -> Cape Town.
+    """'HYROX Dubai' -> Dubai; 'Virgin Active HYROX Cape Town ||' -> Cape Town;
+    'HYROX Youngstars Paris' -> Paris.
 
-    Heuristic: the location is whatever follows the HYROX brand token.
+    Heuristic: the location is whatever follows the HYROX brand token, minus
+    any race-format words in front of it.
     """
     if not title:
         return None
@@ -33,6 +39,11 @@ def _city_from_title(title: Optional[str]) -> Optional[str]:
         return None
     tail = parts[-1].strip(" -|/,:\u2013\u2014")
     tail = re.sub(r"\s+", " ", tail).strip()
+    while True:
+        stripped = _EDITION_RE.sub("", tail)
+        if stripped == tail:
+            break
+        tail = stripped
     return tail or None
 
 

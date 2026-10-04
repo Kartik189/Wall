@@ -37,6 +37,37 @@
 {% endif %}
 
 <section class="filters">
+  <div class="near" id="near">
+    <div class="near-row">
+      <button class="btn" id="use-location" type="button">📍 Use my location</button>
+      <span class="muted small">or</span>
+      <form id="place-form" class="place-form">
+        <input type="search" id="place" placeholder="Enter a city, area or PIN code&hellip;" autocomplete="off">
+        <button class="btn" type="submit">Set</button>
+      </form>
+      <button class="btn" id="clear-location" type="button" hidden>Clear</button>
+    </div>
+    <p class="muted small" id="location-status">Set a location to filter by distance.</p>
+    <div class="chips" id="radius-chips" hidden>
+      <button class="chip" data-km="10">10 km</button>
+      <button class="chip" data-km="20">20 km</button>
+      <button class="chip" data-km="50">50 km</button>
+      <button class="chip" data-km="100">100 km</button>
+      <button class="chip" data-km="250">250 km</button>
+      <button class="chip" data-km="500">500 km</button>
+      <button class="chip" data-km="1000">1000 km</button>
+      <button class="chip" data-km="2500">2500 km</button>
+      <button class="chip active" data-km="">Anywhere</button>
+      <label class="custom-km muted small">custom
+        <input type="number" id="custom-km" min="1" step="1" placeholder="km"> km</label>
+    </div>
+    <label class="toggle" id="sort-wrap" hidden>Sort
+      <select id="sort">
+        <option value="distance">nearest first</option>
+        <option value="date">soonest first</option>
+      </select>
+    </label>
+  </div>
   <input type="search" id="search" placeholder="Search title, city, state, venue&hellip;" autocomplete="off">
   <div class="chips" id="sport-chips">
     <button class="chip active" data-sport="">All <span>{{ summary.total }}</span></button>
@@ -52,20 +83,29 @@
   </div>
   <label class="toggle"><input type="checkbox" id="dated-only"> Only events with a date
     <span class="muted">({{ summary.dateless }} undated)</span></label>
+  {% if summary.unlocated %}
+  <p class="muted small">{{ summary.unlocated }} events have no known location and are hidden
+    while a distance limit is set{% if not summary.geocoded %} &mdash; run
+    <code>python run.py geocode</code> to locate them by city{% endif %}.</p>
+  {% endif %}
   <p class="muted" id="count"></p>
 </section>
 
-<table id="events">
+<table id="events" class="no-location">
   <thead>
-    <tr><th>Date</th><th>Event</th><th>Sport</th><th>Distances</th><th>Location</th><th>Price</th><th>Link</th></tr>
+    <tr><th>Date</th><th class="dist">Distance</th><th>Event</th><th>Sport</th><th>Distances</th><th>Location</th><th>Price</th><th>Link</th></tr>
   </thead>
   <tbody>
   {% for e in events %}
     <tr data-sport="{{ e.sport }}" data-source="{{ e.source }}" data-dated="{{ 1 if e.start else 0 }}"
+        data-lat="{{ e.latitude if e.latitude is not none else '' }}"
+        data-lng="{{ e.longitude if e.longitude is not none else '' }}"
+        data-approx="{{ 1 if e.coords_source == 'geocoded' else 0 }}"
         data-text="{{ (e.title ~ ' ' ~ (e.city or '') ~ ' ' ~ (e.region or '') ~ ' ' ~ (e.venue_name or '') ~ ' ' ~ (e.country or '') ~ ' ' ~ (e.distances | join(' '))) | lower }}">
       <td class="date">
         {% if e.start %}{{ e.start[:10] }}{% else %}<span class="pill warn">date TBC</span>{% endif %}
       </td>
+      <td class="dist small"></td>
       <td>
         <a href="{{ e.source_url }}" target="_blank" rel="noopener">{{ e.title }}</a>
         <div class="muted small">{{ e.source }}</div>

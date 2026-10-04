@@ -4,6 +4,7 @@
     python run.py crawl                 crawl every enabled site
     python run.py crawl --only hyrox    crawl one site
     python run.py crawl --cache         reuse pages already downloaded
+    python run.py geocode               locate existing events without re-crawling
     python run.py serve                 browse and download the JSON
 """
 
@@ -36,6 +37,17 @@ def cmd_crawl(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_geocode(args: argparse.Namespace) -> int:
+    from eventcrawler.crawler import geocode_existing
+
+    if not EVENTS_PATH.exists():
+        print("no events yet - run `python run.py crawl` first", file=sys.stderr)
+        return 1
+    geocode_existing()
+    print(f"\n  events -> {EVENTS_PATH}")
+    return 0
+
+
 def cmd_serve(args: argparse.Namespace) -> int:
     from eventcrawler.web.app import create_app
 
@@ -54,6 +66,11 @@ def main() -> int:
     crawl_parser.add_argument("--only", nargs="+", metavar="KEY", help="site keys to crawl")
     crawl_parser.add_argument("--cache", action="store_true", help="reuse cached pages")
     crawl_parser.set_defaults(func=cmd_crawl)
+
+    geocode_parser = sub.add_parser(
+        "geocode", help="add coordinates to the existing output/events.json without re-crawling"
+    )
+    geocode_parser.set_defaults(func=cmd_geocode)
 
     serve_parser = sub.add_parser("serve", help="open the local viewer")
     serve_parser.add_argument("--config", default=str(DEFAULT_CONFIG))

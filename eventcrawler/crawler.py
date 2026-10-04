@@ -12,16 +12,18 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Callable, List, Optional
+from typing import Callable, List, Optional, Tuple
 
 import yaml
 
+from . import geocode
 from . import normalize as nz
 from .extractors import css as css_extractor
 from .extractors import jsonld
 from .extractors import jsvars
 from .fetcher import Fetcher
-from .models import Event
+from .geocode import Geocoder
+from .models import COORDS_GEOCODED, Event
 from .report import (
     STATUS_BLOCKED,
     STATUS_CARRIED,
@@ -38,6 +40,7 @@ ROOT = Path(__file__).resolve().parent.parent
 OUTPUT_DIR = ROOT / "output"
 EVENTS_PATH = OUTPUT_DIR / "events.json"
 REPORT_PATH = OUTPUT_DIR / "run_report.json"
+GEOCODE_CACHE = ROOT / ".cache" / "geocode.json"
 
 #: Sources whose `type` is `api`/`nextdata` dispatch to a module by key.
 SOURCE_MODULES = {
@@ -315,6 +318,12 @@ def crawl(
 
     kept.sort(key=_sort_key)
 
+    # After the --only merge, so carried rows from an older run get located too.
+    if defaults.get("geocode", True):
+        geocode.annotate(kept, Geocoder(cache_path=GEOCODE_CACHE), log)
+    report.geocoded = sum(1 for e in kept if e.coords_source == COORDS_GEOCODED)
+    report.without_coords = sum(1 for e in kept if e.latitude is None or e.longitude is None)
+
     report.duplicates_dropped = dropped
     report.total_events = len(kept)
     report.requests_made = fetcher.request_count
@@ -325,11 +334,30 @@ def crawl(
 
 
 def write_output(events: List[Event], report: RunReport) -> None:
+    save_events(events)
+    with open(REPORT_PATH, "w", encoding="utf-8") as handle:
+        json.dump(report.to_dict(), handle, indent=2, ensure_ascii=False)
+
+
+def save_events(events: List[Event]) -> None:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     with open(EVENTS_PATH, "w", encoding="utf-8") as handle:
         json.dump([e.to_dict() for e in events], handle, indent=2, ensure_ascii=False)
-    with open(REPORT_PATH, "w", encoding="utf-8") as handle:
-        json.dump(report.to_dict(), handle, indent=2, ensure_ascii=False)
+
+
+def geocode_existing(log: Optional[Callable[[str], None]] = None) -> Tuple[int, int]:
+    """Locate the events already in output/events.json without re-crawling."""
+    log = log or (lambda msg: print(msg))
+    events = [Event(**e) for e in load_events()]
+    geocoded, missing = geocode.annotate(events, Geocoder(cache_path=GEOCODE_CACHE), log)
+    save_events(events)
+    report = load_report()
+    if report:
+        report["geocoded"] = sum(1 for e in events if e.coords_source == COORDS_GEOCODED)
+        report["without_coords"] = missing
+        with open(REPORT_PATH, "w", encoding="utf-8") as handle:
+            json.dump(report, handle, indent=2, ensure_ascii=False)
+    return geocoded, missing
 
 
 def load_events() -> List[dict]:

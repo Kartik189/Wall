@@ -32,6 +32,10 @@ defaults:
   drop_past: true          # drop events that have already finished; listing
                            # sites keep showing last year's edition when the
                            # next one has no date yet
+  geocode: true            # look up coordinates for events that only give a
+                           # city (OpenStreetMap Nominatim, cached in
+                           # .cache/geocode.json) so the viewer can filter by
+                           # distance
 
 sites:
   - key: runsignup

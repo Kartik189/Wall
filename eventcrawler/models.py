@@ -25,6 +25,11 @@ DATE_OK = "ok"
 #: headless browser. We record the gap instead of inventing a date.
 DATE_UNAVAILABLE = "unavailable_phase1"
 
+#: Where latitude/longitude came from. Listing coordinates are whatever the
+#: source published; geocoded ones are a city centre, so distances are approximate.
+COORDS_LISTING = "listing"
+COORDS_GEOCODED = "geocoded"
+
 
 def make_id(source: str, source_url: str) -> str:
     """Stable id for an event. Dedupe keys off this, so source_url must be set."""
@@ -61,6 +66,7 @@ class Event:
     country: Optional[str] = None
     latitude: Optional[float] = None
     longitude: Optional[float] = None
+    coords_source: Optional[str] = None  # COORDS_LISTING / COORDS_GEOCODED
 
     # --- cost ---
     price_min: Optional[float] = None

@@ -12,6 +12,9 @@ python run.py crawl          # writes output/events.json + output/run_report.jso
 python run.py serve          # http://127.0.0.1:5000
 ```
 
+`python run.py geocode` adds coordinates to an existing `output/events.json`
+without re-crawling (see *Location and distance*).
+
 ## What it crawls
 
 | Source | How it is read | Notes |
@@ -90,6 +93,8 @@ straight into anything else:
   "city": "Mumbai",
   "country": "India",
   "latitude": 18.9334056,
+  "longitude": 72.8231371,
+  "coords_source": "listing",
   "price_min": 800.0,
   "price_max": 2200.0,
   "currency": "INR",
@@ -114,11 +119,44 @@ than about the run that first wrote the record. An event with no date at all
 ambiguous — it says whether the site was blocked, empty, or errored, and with
 which HTTP status.
 
+## Location and distance
+
+Every event is given a `latitude`/`longitude` where possible, so the viewer can
+filter by distance. `coords_source` says where they came from:
+
+- `listing` — published by the source (IndiaRunning, AllEvents). Usually the
+  venue.
+- `geocoded` — the source only named a city, so `eventcrawler/geocode.py`
+  looked it up on OpenStreetMap's Nominatim. This is the city centre, so a
+  distance measured from it is approximate; the viewer prefixes it with `~`.
+
+Geocoding runs at the end of every crawl (`geocode: true` in `sites.yaml`
+turns it off). It follows Nominatim's usage policy: at most one request a
+second, an honest User-Agent, and every answer cached in `.cache/geocode.json`,
+so after the first run only newly seen cities cost a request. A match wider
+than 400 km corner to corner (a whole state or country) is rejected, because
+nobody can be "10 km" from Gujarat; compact city-states such as Singapore,
+Hong Kong and Delhi pass. Network failures are never cached as "not found".
+Events with no city at all, such as virtual runs, stay without coordinates.
+
 ## Viewer
 
 `python run.py serve` gives a table filtered by sport, source and free text,
 with **Download JSON**, a raw-JSON view, the run report, and a **Re-crawl**
 button. It binds to `127.0.0.1` only.
+
+**Near me.** Set a location with **Use my location** (the browser asks for
+permission) or by typing a city, area or PIN code, which the server resolves
+through `/geocode?q=…`. A **Distance** column then appears. You can limit the
+list to 10, 20, 50, 100, 250, 500, 1000 or 2500 km, enter your own limit, or
+choose **Anywhere**, and sort nearest-first or soonest-first. Distances are
+straight-line, not by road. Events with no known location are hidden while a
+limit is set. The location and limit are remembered in the browser between
+visits.
+
+The filter can only narrow what was crawled. To get more events near you,
+add listing pages for your area to `sites.yaml`, for example another
+`https://allevents.in/<city>/sports` seed.
 
 ## Known gaps (deliberate, not bugs)
 
@@ -145,11 +183,12 @@ while you iterate on parsing.
 ## Layout
 
 ```
-run.py                     CLI: crawl / serve
+run.py                     CLI: crawl / geocode / serve
 sites.yaml                 sources and per-site settings
 eventcrawler/
   crawler.py               orchestration, dedupe, output
   fetcher.py               robots-aware HTTP with per-host throttling
+  geocode.py               city -> coordinates via Nominatim, cached
   models.py                the Event record every source maps onto
   normalize.py             dates, prices, addresses, distances, sport, dedupe
   report.py                per-run audit trail
@@ -158,6 +197,7 @@ eventcrawler/
   web/                     Flask viewer
 tests/
   test_js_extraction.py    fixtures for the embedded-JS path (no network)
+  test_geocode.py          geocoding rules, cache and failure handling (no network)
 tools/
   fetch_seeds.py           cache candidate URLs under .cache/probe
   analyze_seeds.py         verdict per candidate: which step, if any, reads it

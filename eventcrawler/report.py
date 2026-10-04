@@ -44,6 +44,8 @@ class RunReport:
     rejected_no_url: int = 0
     rejected_non_sport: int = 0
     rejected_past: int = 0
+    geocoded: int = 0
+    without_coords: int = 0
     requests_made: int = 0
 
     def add(self, result: SiteResult) -> SiteResult:
@@ -79,5 +81,9 @@ class RunReport:
             f"{self.rejected_non_sport} non-sport filtered, "
             f"{self.rejected_past} already finished) "
             f"in {self.requests_made} requests"
+        )
+        lines.append(
+            f"  {self.geocoded} located by city name, "
+            f"{self.without_coords} with no known location"
         )
         return "\n".join(lines)

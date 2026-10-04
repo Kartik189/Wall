@@ -8,6 +8,7 @@
   --warn: #f0b429;
 }
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 body {
   margin: 0; padding: 24px 28px 64px;
   background: var(--bg); color: var(--text);
@@ -51,6 +52,25 @@ a:hover { text-decoration: underline; }
 .chip.active { background: var(--accent); border-color: var(--accent); color: #06131f; font-weight: 600; }
 .chip.active span { color: #06131f; }
 .toggle { color: var(--muted); font-size: 13px; display: flex; align-items: center; gap: 6px; }
+
+.near {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+  padding: 12px 14px; display: flex; flex-direction: column; gap: 8px;
+}
+.near-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.near p { margin: 0; }
+.place-form { display: flex; gap: 6px; }
+#place, #custom-km, #sort {
+  background: var(--bg); border: 1px solid var(--line); color: var(--text);
+  padding: 7px 10px; border-radius: 7px; font-size: 13px;
+}
+#place { width: min(280px, 60vw); }
+#custom-km { width: 72px; padding: 4px 8px; }
+.custom-km { display: inline-flex; align-items: center; gap: 5px; margin-left: 4px; }
+#sort { padding: 4px 8px; }
+#radius-chips .chip { text-transform: none; }
+table.no-location .dist { display: none; }
+td.dist { white-space: nowrap; font-variant-numeric: tabular-nums; }
 
 table { width: 100%; border-collapse: collapse; margin-top: 8px; }
 th {
